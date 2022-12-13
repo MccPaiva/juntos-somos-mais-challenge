@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+*{ 
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root, .App{
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+}
+
+:root{
+  font-size: 10px;
+}
+
+.container{
+  max-width: 130rem;
+  padding: 0 4%;
+  margin: 0 auto;
+}
+
+header{
+  background-color: #F5F5F5;
+}
+
+header > .container{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.logo-container{
+  min-width: 29.2rem;
+  height: inherit;
+}
+
+.logo{
+  max-width: 14.8rem;
+}
+
+header input{
+  height: 4.053rem;
+  border-radius: 32px;
+  padding-left: 4rem;
+  width: 50rem;
+}
+
+header .empty{
+  background-color: #D8D8D8;
+  border-radius: 32px;
+  height: 1.6rem;
+  width: 17.6rem;
+  margin-left: 2rem;
+}
+
+.breadcrumbs{
+  font-size: 1.2rem;
+  margin: 4rem 0;
+  cursor: default;
+}
+
+section .container > h1{
+  font-size: 3.2rem;
+  font-weight: 700;
+  cursor: default;
+  margin-bottom: 4rem;
+}
+
+.section-container{
+  display: flex;
+}
+
+.section-container aside{
+  width: 27.2rem;
+  margin-right: 2rem;
+}
+
+.section-container aside .by-state{
+  border: 1px solid #E5E5E5;
+  border-radius: 4px;
+}
+
+.section-container aside .by-state > div{
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-container aside .by-state > div > div{
+  display: flex;
+  align-items: center;
+}
+
+.section-container aside h2{
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  cursor: default;
+}
+
+.section-container input{
+  height: 2.4rem;
+  color: #4A4A4A;
+}
+
+.section-container label{
+  font-size: 1.6rem;
+  margin-left: 1rem;
+  user-select: none;
+  font-weight: 400;
+  color: #222D39;
+}
+
+.section-container a{
+  font-size: 1.6rem;
+  margin-top: 0.5rem;
+  text-decoration: underline;
+  user-select: none;
+  font-weight: 400;
+  color: #222D39;
+  cursor: pointer;
+}
+
+.section-container .profiles{
+  width: 100%;
+}
+
+.section-container .order{
+ border: 1px solid #E5E5E5;
+ border-radius: 4px;
+ margin-bottom: 1.5rem;
+}
+
+.section-container .order > div{
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ font-size: 1.6rem;
+ margin: 1.5rem;
+}
+
+.section-container .order .options{
+ display: flex;
+ flex-direction: row;
+}
+
+.section-container .order select{
+ margin-left: 1rem;
+}
+
+.profile-list{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.profile{
+  width: calc(33% - .5rem);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  border: 1px solid #E5E5E5;
+}
+
+.profile img{
+  border-radius: 100%;
+  border: 1px solid #E5E5E5;
+  transform: scale(0.7);
+}
+
+.profile h1{
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.profile .adress{
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.profile .other-info{
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.page-list{
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  width: 35%;
+  margin: 4rem auto;
+  justify-content: space-between;
+  font-weight: bold;
+  color: #9B9B9B;
+}
+
+.page-list li{
+  padding: 1rem;
+}
+
+.page-list li > a{
+  font-size: 1.8rem;
+  text-decoration: none;
+}
+
+.page-list .previous,
+.page-list .next{
+  background-color: #4A4A4A;
+  border-radius: 100%;
+  padding: 1rem 1.5rem;
+}
+
+.page-list .previous a,
+.page-list .next a{
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.page-list .selected{
+  color: #4A4A4A;
+  position: relative;
+}
+
+.page-list .disabled{
+  background-color: #E5E5E5;
+  cursor: default;
+}
+
+.page-list .disabled > *{
+  cursor: default;
+}
+
+.page-list .selected:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: .4rem;
+  background-color: #9B9B9B;
+  border-radius: .9rem;
+  top: 70%;
+  left: 0;
+}
