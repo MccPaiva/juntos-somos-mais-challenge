@@ -8,8 +8,7 @@ import {nanoid} from 'nanoid'
 import ReactPaginate from 'react-paginate';
 
 // Arrumar bug onde mudar o estado reorganiza a lista
-// Arrumar bug onde se o número 9 é maior do que o número de pessoas, ainda mostra 9
-
+// Mesmo erro persiste só que reverso, setUserData dicionado ao sortItems
 
 function App() {
 
@@ -114,6 +113,10 @@ function App() {
   }, []);
 
   React.useEffect(()=>{
+    setFilteredData(userData)
+  }, [userData]);
+
+  React.useEffect(()=>{
     for(let i = 0; i < statePreference.length; i++){
       if(statePreference[i].isSelected === statePreference[0].isSelected){
         setNoneSelected(true)
@@ -127,17 +130,13 @@ function App() {
   React.useEffect(()=>{
 
     if(noneSelected){
-      setFilteredData(userData)
+      setFilteredData(userData);
     }else{
       setFilteredData(userData.filter(user => 
         filteredStates.includes(user.location.state)))
     }
 
-  }, [filteredStates, noneSelected])
-
-  console.log(filteredData)
-
-    
+  }, [filteredStates, noneSelected]); 
 
   function capitalizeWords(str){
   
@@ -206,7 +205,7 @@ function App() {
         : currentState
     );
     setStatePreference(newStatePreference);
-
+//CONTINAUR AQUI
   
     if (selectedState.isSelected) {
       setFilteredStates(filteredStates.filter(st => st !== selectedState.name));
@@ -241,13 +240,15 @@ function App() {
   }
 
   function sortItems(item){
-    if (Array.isArray(filteredData)) {
 
-      let sort;
+    if (Array.isArray(filteredData)) {
 
       switch (item) {
             case "name":
               setFilteredData([...filteredData].sort((a, b) =>
+              a.name.first > b.name.first ? 1 : -1,
+              ))
+              setUserData([...userData].sort((a, b) =>
               a.name.first > b.name.first ? 1 : -1,
               ))
               break;
@@ -255,15 +256,24 @@ function App() {
               setFilteredData([...filteredData].sort((a, b) =>
               a.location.state > b.location.state ? 1 : -1,
               ))
+              setUserData([...userData].sort((a, b) =>
+              a.location.state > b.location.state ? 1 : -1,
+              ))
               break;
             case "city":
               setFilteredData([...filteredData].sort((a, b) =>
               a.location.city > b.location.city ? 1 : -1,
               ))
+              setUserData([...userData].sort((a, b) =>
+              a.location.city > b.location.city ? 1 : -1,
+              ))
               break;
             default:
               setFilteredData([...filteredData].sort((a, b) =>
-              a.name > b.name ? 1 : -1,
+              a.name.first > b.name.first ? 1 : -1,
+              ))
+              setUserData([...userData].sort((a, b) =>
+              a.name.first > b.name.first ? 1 : -1,
               ))
       }
     }
@@ -324,7 +334,10 @@ function App() {
             <div className="profiles">
               <div className="order">
                 <div>
-                  <p>{`Exibindo 9 de ${filteredData.length} itens`}</p>
+                  <p>{`Exibindo 
+                    ${filteredData.length < 9 
+                    ? filteredData.length : 9}
+                     de ${filteredData.length} itens`}</p>
                   <div className="options">
                     <p>Ordenar por:</p>
                     <select onChange={(e) => sortItems(e.target.value)}>
