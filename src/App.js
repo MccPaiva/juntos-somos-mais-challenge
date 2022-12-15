@@ -7,8 +7,6 @@ import State from "./Components/State.js";
 import {nanoid} from 'nanoid'
 import ReactPaginate from 'react-paginate';
 
-// Arrumar bug onde mudar o estado reorganiza a lista
-// Mesmo erro persiste só que reverso, setUserData dicionado ao sortItems
 
 function App() {
 
@@ -36,6 +34,12 @@ function App() {
     isSelected: false,
     id: nanoid()},
     {name: "alagoas",
+    isSelected: false,
+    id: nanoid()},
+    {name: "amapá",
+    isSelected: false,
+    id: nanoid()},
+    {name: "amazonas",
     isSelected: false,
     id: nanoid()},
     {name: "ceará",
@@ -116,27 +120,22 @@ function App() {
     setFilteredData(userData)
   }, [userData]);
 
-  React.useEffect(()=>{
-    for(let i = 0; i < statePreference.length; i++){
-      if(statePreference[i].isSelected === statePreference[0].isSelected){
-        setNoneSelected(true)
-      }else{
-        setNoneSelected(false)
-        break;
-      }
-    }
-  }, [statePreference]);
+  React.useEffect(() => {
+  if (statePreference.some(state => state.isSelected)) {
 
-  React.useEffect(()=>{
-
-    if(noneSelected){
-      setFilteredData(userData);
-    }else{
-      setFilteredData(userData.filter(user => 
-        filteredStates.includes(user.location.state)))
-    }
-
-  }, [filteredStates, noneSelected]); 
+    const filtered = userData.filter(
+      user =>
+        statePreference.some(
+          state =>
+            state.isSelected &&
+            user.location.state.toLowerCase() === state.name.toLowerCase()
+        )
+    );
+    setFilteredData(filtered);
+  } else {
+    setFilteredData(userData);
+  }
+}, [statePreference, userData]);
 
   function capitalizeWords(str){
   
