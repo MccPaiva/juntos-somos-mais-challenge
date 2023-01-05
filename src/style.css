@@ -59,6 +59,18 @@ header .empty{
 .breadcrumbs{
   font-size: 1.2rem;
   margin: 4rem 0;
+}
+
+.breadcrumbs > a{
+  cursor: pointer;
+}
+
+.breadcrumbs > a:hover{
+  text-decoration: underline;
+}
+
+.breadcrumbs .selected{
+  text-decoration: underline;
   cursor: default;
 }
 

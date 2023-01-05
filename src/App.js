@@ -98,6 +98,8 @@ function App() {
     id: nanoid()}
   ])
 
+  const [searchedItem, setSearchedItem] = React.useState("");
+
   const [showAll, setShowAll] = React.useState(false);
 
   const [noneSelected, setNoneSelected] = React.useState(true);
@@ -131,11 +133,11 @@ function App() {
             user.location.state.toLowerCase() === state.name.toLowerCase()
         )
     );
-    setFilteredData(filtered);
+    setFilteredData(handleSearch(filtered));
   } else {
-    setFilteredData(userData);
+    setFilteredData(handleSearch(userData));
   }
-}, [statePreference, userData]);
+}, [statePreference, userData, searchedItem]);
 
   function capitalizeWords(str){
   
@@ -156,7 +158,16 @@ function App() {
     }
 
     return(splitWord.join(" "));
-  } 
+  }
+
+  function handleSearch(items){
+
+          if(searchedItem){
+            return items.filter(
+              item => (item.name.first.toLowerCase() + " " + item.name.last.toLowerCase()).includes(searchedItem.toLowerCase()));
+          }
+          return items
+  }
 
   function PaginatedItems({ itemsPerPage }) {
     const [itemOffset, setItemOffset] = React.useState(0);
@@ -306,14 +317,24 @@ function App() {
           <div className="logo-container">
             <img className="logo" src={logo}></img>
           </div>
-          <input type="text" placeholder="Buscar aqui"></input>
+          <input  
+                type="text" 
+                placeholder="Buscar aqui"
+                onChange={(e) => setSearchedItem(e.target.value)}
+          ></input>
           <div className="empty"></div>
           <div className="empty"></div>
         </div>
       </header>
       <section>
         <div className="container">
-          <p className="breadcrumbs">Home > Usuários > Detalhes</p>
+          <div className="breadcrumbs">
+            <a>Home</a>
+            <span> > </span>
+            <a>Usuários</a>
+            <span> > </span>
+            <a className="selected">Detalhes</a>
+          </div>
 
           <h1>Lista de Membros</h1>
 
