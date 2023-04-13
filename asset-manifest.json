@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/juntos-somos-mais-challenge/static/css/main.1f22994a.css",
+    "main.js": "/juntos-somos-mais-challenge/static/js/main.61533843.js",
+    "static/media/logo.svg": "/juntos-somos-mais-challenge/static/media/logo.c13e86301ffe4a7e6328007ccd557d83.svg",
+    "index.html": "/juntos-somos-mais-challenge/index.html",
+    "main.1f22994a.css.map": "/juntos-somos-mais-challenge/static/css/main.1f22994a.css.map",
+    "main.61533843.js.map": "/juntos-somos-mais-challenge/static/js/main.61533843.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1f22994a.css",
+    "static/js/main.61533843.js"
+  ]
+}
